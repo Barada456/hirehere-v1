@@ -1,0 +1,23 @@
+a {
+	background-color: #517a8e;
+	padding-right: 1rem;
+	color: white;
+	font-size: 20px;
+}
+
+.card {
+	border-style: solid;
+	border-width: medium;
+	border-color:  black;
+	position: fixed;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #517a8e;
+	color: white;
+	text-align: center;
+}

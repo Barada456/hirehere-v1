@@ -1,0 +1,166 @@
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/allEmployees.css">
+<link rel = "icon" href = "https://centroxy.com/wp-content/uploads/2018/01/shortcut-icon-100x100.png" type = "image/x-icon">
+
+</head>
+
+<body style="margin: 0; height: 100%; overflow: hidden">
+	<!-- header start -->
+	<h1 class="text-light text-center" style="background-color: #517a8e;">HIRE
+		HERE</h1>
+	<nav class="navbar navbar-expand-lg navbar navbar-dark "
+		style="background-color: #517a8e; font-size: 20px;">
+
+		<div th:if="${role.equals('CEO')}">
+			<a th:href="@{/project/addNewProject}" style="color: white;">New
+				Project</a>
+		</div>
+
+
+		<a href="#" style="color: white;">Employees</a> <a
+			style="color: white;">Projects</a>
+
+
+		<div th:if="${role.equals('CEO')}">
+			<a th:href="@{/ceo/showDemands}" style="color: white;">Demands</a>
+		</div>
+
+		<div th:if="${role.equals('PM')}">
+			<a th:href="@{/pm/demandResource}" style="color: white;">Demand
+				Resource</a>
+		</div>
+
+
+
+		<div th:if="${role.equals('HR')}">
+			<a href="#" style="color: white;">Requirements</a>
+		</div>
+
+
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav ml-auto">
+			</ul>
+			<a style="color: white;">Logout</a>
+		</div>
+	</nav>
+	<!-- header end -->
+
+	<!-- card start -->
+	<div class="container">
+		<div class="card mt-2" style="width: 68rem; height: 420px">
+
+
+
+			<!-- <h6 style="text-align: right; color: blue; margin-left: 27.5cm" align="right">
+
+                <label text-align="right" th:text="${role}"></label>
+
+            </h6>
+ -->
+
+
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-3 col-sm-6 item text-center"
+						th:each="emp: ${listOfEmployee}">
+						<img class="contain" th:src="@{${emp.employeePicImagePath}}">
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+
+
+	<!-- card end -->
+
+
+
+<nav aria-label="Page navigation example ">
+<div th:if="${role.equals('HR')}">
+		<ul class="pagination"style="justify-content:center">
+
+			<li th:if="${currentpage!=0}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/HR/' +${currentpage-1}}" class="page-link"
+				href="#">Previous</a></li>
+			<li th:classappend="${currentpage==i-1?'active':''}"
+				th:each="i : ${#numbers.sequence(1,totalpage)}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/HR/' +${i-1}}" class="page-link" href=""><span
+					th:text="${i}"></span></a></li>
+
+			<li th:if="${currentpage+1!=totalpage}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/HR/' +${currentpage+1}}" class="page-link"
+				href="#">Next</a></li>
+		</ul>
+</div>	
+
+<div th:if="${role.equals('CEO')}">
+		<ul class="pagination"style="justify-content:center">
+
+			<li th:if="${currentpage!=0}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/CEO/' +${currentpage-1}}" class="page-link"
+				href="#">Previous</a></li>
+			<li th:classappend="${currentpage==i-1?'active':''}"
+				th:each="i : ${#numbers.sequence(1,totalpage)}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/CEO/' +${i-1}}" class="page-link" href=""><span
+					th:text="${i}"></span></a></li>
+
+			<li th:if="${currentpage+1!=totalpage}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/CEO/' +${currentpage+1}}" class="page-link"
+				href="#">Next</a></li>
+		</ul>
+</div>	
+
+<div th:if="${role.equals('PM')}">
+		<ul class="pagination"style="justify-content:center">
+
+			<li th:if="${currentpage!=0}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/PM/' +${currentpage-1}}" class="page-link"
+				href="#">Previous</a></li>
+			<li th:classappend="${currentpage==i-1?'active':''}"
+				th:each="i : ${#numbers.sequence(1,totalpage)}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/PM/' +${i-1}}" class="page-link" href=""><span
+					th:text="${i}"></span></a></li>
+
+			<li th:if="${currentpage+1!=totalpage}" class="page-item"><a
+				th:href="@{'/employee/allEmployees/PM/' +${currentpage+1}}" class="page-link"
+				href="#">Next</a></li>
+		</ul>
+</div>
+
+</nav>
+
+
+	<!-- Footer -->
+
+	<div class="foot ml-5"
+		style="margin-bottom: 50px; position: center; bottom: 20; width: 60%; height: 60px">
+		<footer class="footer">
+			<div style="background-color: #517a8e; border-color: #517a8e;">
+				<form id="footer-form">
+					<label for="email">Let us reach you at:</label> <input type="email"
+						id="email">
+					<button class="btn btn-secondary" id="footer-contact" type="submit">Contact</button>
+				</form>
+			</div>
+		</footer>
+	</div>
+	<!-- Footer -->
+	
+	<script src="/js/allEmployees.js">
+	</script>
+
+</body>
+
+</html>

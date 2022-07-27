@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<title>HireHere - PM Dashboard</title>
+<link rel="icon"
+	href="https://centroxy.com/wp-content/uploads/2018/01/shortcut-icon-100x100.png"
+	type="image/x-icon">
+<link rel="stylesheet" href="/css/pm-dashboard-new.css">
+<link rel="icon"
+	href="https://centroxy.com/wp-content/uploads/2018/01/shortcut-icon-100x100.png"
+	type="image/x-icon">
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
+		<img draggable="false" src="/img/logos/centroxy-logo.png" alt=""
+			width="15%">
+		<div class=hire>
+			<h1>HIRE HERE</h1>
+		</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="navbar-nav ml-auto ">
+				<!-- Notification start -->
+				<div class="notification">
+					
+					<div class="notBtn">
+						<div class="number">
+							<span th:text="${notificationcount}"></span>
+						</div>
+						<i class="fa fa-bell" data-toggle="tooltip"
+							data-placement="bottom" title="Notification"></i>
+						
+						<div class="box">
+							
+							<div class="display">
+								<div class="nothing">
+									<div class="cent">
+										<ul th:each="notification : ${NotificationsForPM}">
+											<li>
+												<div>
+													<a class="details_notification" data-target="#projectmodal"
+														data-toggle="modal" href="#" th:name="${notification.id}"><span
+														th:text="${notification.causedBy}"></span> By <span
+														th:text="${notification.triggeredBy}"></span></a>
+												</div>
+												<div class="moments-ago">
+													<th:block
+														th:text="${T(com.centroxy.entities.DurationCalculator).calculate(notification.dateTime)}">
+													</th:block>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- Notification End -->
+				<div class="user mr-2">
+					<img src="/employee-pics/1/barada.jpg" alt=""
+						class="rounded-circle" height="40px" width="40px">
+				</div>
+				<div class="log">
+					<button type="button" class="btn btn-sm foo-btn-circle">Log
+						Out</button>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li><a href="/employee/allEmployees/PM/0">
+						<h5>Employees</h5>
+				</a></li>
+				<hr>
+				<li><a href="#">
+						<h5>Projects</h5>
+				</a></li>
+				<hr>
+
+
+				<li class="active"><a href="/pm/demandResource">
+						<h5>Demand Resource</h5>
+						<hr>
+				</a></li>
+				<li class="active"><a href="/pm/new/assignEmployee">
+						<h5>Assign Employee</h5>
+						<hr>
+				</a></li>
+				<li><a href="#">
+						<h5>Apply Leave</h5>
+						<hr>
+				</a></li>
+				
+				<li class="active"><a href="#">
+						<h5>Leave Status</h5>
+						<hr>
+				</a></li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+		<!-- Notification Pop up Modal Start -->
+		<div id="projectmodal" aria-hidden="true"
+			aria-labelledby="myLargeModalLabel"
+			class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div>
+						<div id="details"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  Notification Popup Modal End -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container">
+				<div class="row ">
+					<div class="col col-md-6">
+						<div class="card">
+							<div class="card-header">Announcements</div>
+
+							<div class="card-body">
+								<p>sdhjk
+								<P>
+								<p>sdhjk
+								<P>
+								<p>sdhjk
+								<P>
+								<p>sdhjk
+								<P>
+								<p>sdhjk
+								<P>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+								<p>repoftrydrecrv
+								<p>
+							</div>
+						</div>
+					</div>
+					<div class="col col-md-6">
+						<div class="card">
+							<div class="card-header">New Hires</div>
+
+							<div class="card-body"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="page-content-wrapper">
+			<div class="container">
+				<div class="row ">
+					<div class="col col-md-6">
+						<div class="card">
+							<div class="card-header">Approvals</div>
+
+							<div class="card-body">
+							<!-- <img src="/illustrations/nothing_found.png" style="height:150%;width:100%;"> -->
+							</div>
+						</div>
+					</div>
+					<div class="col col-md-6">
+						<div class="card">
+							<div class="card-header">Holidays</div>
+
+							<div class="card-body"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+	</div>
+	
+	<!-- footer start -->
+	<!-- 	<div class="footer fixed-bottom d-flex justify-content-center"> -->
+	<div class="footer">
+		<form id="footer-form">
+			<label for="email">Let us reach you at:</label> <input type="email"
+				id="email">
+			<button class="btn btn-secondary" id="footer-contact" type="submit">Contact</button>
+		</form>
+	</div>
+	<!-- footer end -->
+	
+	<script src="/js/pm-dashboard-new.js">
+		
+	</script>
+
+
+
+
+</body>
+</html>

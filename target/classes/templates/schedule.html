@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="ie=edge" http-equiv="X-UA-Compatible">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link crossorigin="anonymous"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.1/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	
+</script>
+<script crossorigin="anonymous"
+	integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link crossorigin="anonymous"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.1/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	
+</script>
+<script crossorigin="anonymous"
+	integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/schedule.css">
+<link rel="icon"
+	href="https://centroxy.com/wp-content/uploads/2018/01/shortcut-icon-100x100.png"
+	type="image/x-icon">
+</head>
+
+<body>
+	<!-- header start -->
+	<h1 class="text-light text-center" style="background-color: #517a8e;">HIRE
+		HERE</h1>
+	<nav class="navbar navbar-expand-lg navbar navbar-dark "
+		style="background-color: #517a8e; font-size: 20px;">
+		<a href="/employee/allemployees/HR/0" style="color: white;">Employees</a>
+		<select
+			style="text-align: center; border: none; background-color: transparent; background-image: none; box-shadow: none; color: white; display: inline-block;">
+			<option class="dropdown-item" disabled selected>Projects</option>
+			<option class="dropdown-item" th:each="list : ${listOfProject}"
+				th:value="${list.name}" th:text="${list.name}"></option>
+		</select>
+		<!-- <select
+			style="border: none; text-align: right; background-color: transparent; background-image: none; box-shadow: none; color: white; display: inline-block;">
+			<option class="dropdown-item" disabled selected>Requirements</option>
+			<option class="dropdown-item" th:each="job : ${jobdescription}"
+				th:value="${job.positionFor}" th:text="${job.positionFor}"></option>
+		</select>  -->
+
+		<div class="dropdown">
+			<button class="btn btn-transparent  dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown">Requirements</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" th:each="job : ${jobdescription}"
+					th:text="${job.positionFor}"></a>
+			</div>
+		</div>
+
+		<a href="http://www.naukri.com" target="_blank" style="color: white;">Publish</a>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav ml-auto">
+			</ul>
+			<div class="notification">
+				<div class="notBtn">
+					<div class="number">
+						<span th:text="${notificationcount}">
+					</div>
+					<i class="fa fa-bell"></i>
+					<div class="box">
+						<div class="display">
+							<div class="nothing">
+								<div class="cent">
+									<ul th:each="notification : ${NotificationsForHR}">
+										<li>
+											<div>
+												<a class="details_notification"
+													data-target=".bd-example-modal-lg" data-toggle="modal"
+													href="#" th:name="${notification.id}"><span
+													th:text="${notification.causedBy}"></span> By <span
+													th:text="${notification.triggeredBy}"></span></a>
+											</div>
+											<div>
+												<th:block
+													th:text="${T(com.centroxy.entities.DurationCalculator).calculate(notification.dateTime)}">
+												</th:block>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a style="color: white;">Logout</a>
+			</div>
+	</nav>
+	<!-- header end -->
+	<!-- side bar start -->
+	<nav class="navbar navbar-expand-lg navbar-light ">
+		<div id="accordian">
+			<ul class="show-dropdown main-navbar">
+				<div class="selector-active"></div>
+				<li class="nav-item active"><a href="#"><i
+						class="fas fa-clock" title="Schedule">&nbsp;Schedule</i></a></li>
+				<li class="nav-item"><a href="/employee/addNewEmployee"><i
+						class="fas fa-snowboarding" title="Onboard">&nbsp;Onboard</i></a></li>
+				<li class="nav-item"><a href="/hr/calender"><i
+						class="fas fa-calendar-week" title="Calendar">&nbsp;Calendar</i></a></li>
+
+			</ul>
+		</div>
+		<div class="container">
+			<div class="card mt-2" style="width: 68rem; height: 420px">
+				<h6 style="text-align: right; color: blue">HR</h6>
+				<div class="card-body">
+					<div class="row">
+
+						<div class="col-md-6 col-lg-4">
+
+							<div class="card  text-white h-150" style="overflow-y: scroll;">
+								<div class="card-header ">
+									<b> Panels</b>
+								</div>
+								<div class="card-body" id="panel-card-body">
+									<div id="panel-body"></div>
+
+									<div class="panel mb-0 text-center"></div>
+
+								</div>
+
+							</div>
+							<div class="addPanel">
+								<button class="btn btn-success" data-toggle="modal"
+									data-target="#addpanelmodal">Add Panel</button>
+							</div>
+
+						</div>
+						<div class="col-md-6 col-lg-8">
+							<form id="schedule-form" th:object="${interviewDetails}"
+								enctype="multipart/form-data">
+								<div class="card  text-white h-150" style="overflow-y: scroll;">
+									<div class="card-header">
+										<h6 style="text-align: left; color: red">* Please Assign
+											a Panel</h6>
+
+										<b>Interview</b>
+									</div>
+
+									<div class="card-body" id="schedule-card">
+										<div class="form-group">
+											<label for="candidate">Candidate Name <span
+												style="color: red">*</span></label> <input type="text"
+												class="form-control" name="candidateName"
+												th:field=*{candidateName} id="candidateName" required>
+										</div>
+
+										<div class="form-group">
+											<label for="JD">JD <span style="color: red">*</span></label>
+
+											<select class="form-control" name="jdid">
+												<option value="0" disabled>Select Related JD</option>
+												<option th:each="job : ${jobdescription}"
+													th:value="${job.jdId}"
+													th:text="@{${job.positionFor}+' ('+${job.experienceInYears}+')'}"></option>
+											</select>
+
+										</div>
+
+										<div class="form-group">
+											<label for="scheduledDate">Scheduled Date <span
+												style="color: red">*</span></label> <input type="date"
+												class="form-control" id="scheduledDate"
+												th:field=*{scheduledDate} name="scheduledDate" required>
+										</div>
+
+										<div class="form-group">
+											<label>CV <span style="color: red">*</span></label><br>
+											<input type="file" id="candidateCV" accept="application/pdf"
+												name="CV" required>
+										</div>
+
+										<div class="form-group">
+											<label>Panel <span style="color: red">*</span></label><br>
+											<input type="text" class="form-control" id="assigned-panel"
+												name="panel" required readonly> <input type="hidden"
+												class="form-control" id="assigned-panel-hidden"
+												name="hiddden-panel">
+										</div>
+										<br>
+
+									</div>
+
+								</div>
+								<div class="form-group"
+									style="margin-left: 10rem; margin-right: 10rem">
+									<button type="submit" class="btn btn-primary ">Submit</button>
+
+									<button type="reset" class="btn btn-danger float-right"
+										id="panelReset">Reset</button>
+								</div>
+							</form>
+
+
+
+
+
+
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- Modal -->
+	<!-- add panel modal start -->
+	<div class="modal modal-vcenter fade" id="addpanelmodal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Panel Members</h5>
+
+					<button type="button" class="close" id="close-addpanel"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="container">
+					<form id="panelform">
+
+						<div class="panel">
+							<strong><label>Panel For:</label></strong> <input id="panelfor"
+								name="panelName" type="text" class="form-control-sm">
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-3 col-lg-3">
+											<strong><label>Employee:</label></strong>
+										</div>
+										<div class="col-md-9 col-lg-9">
+											<select name="panelEmp" id="employee" multiple>
+												<option th:each="employee : ${allemployee}"
+													th:onmouseover="showImg([[${employee.employeePicImagePath}]])"
+													th:onmouseout="hideImg([[${employee.employeePicImagePath}]])"
+													th:value="${employee.empId}" th:text="${employee.name}">
+												</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-6" id="empimg">
+								<img src="" alt="Avatar" style="width: 85px" id="emp-img"
+									hidden="true">
+							</div>
+						</div>
+
+						<div class="modal-footer">
+							<button id="addpanel" type="submit" class="btn btn-success">Save</button>
+							<input id="resetpanel" class="btn btn-danger" type="reset"
+								value="Reset">
+
+						</div>
+
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- add panel modal end -->
+	<!-- Modal -->
+	<!-- side bar end -->
+
+	<!-- Notification Popup Modal -->
+	<div id="projectmodal" aria-hidden="true"
+		aria-labelledby="myLargeModalLabel"
+		class="modal fade bd-example-modal-lg" role="dialog" tabindex="-1">
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div>
+					<div id="details"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Notification Popup Modal -->
+	<!-- Footer start-->
+	<div class="foot ml-5"
+		style="margin-bottom: 50px; position: center; bottom: 20; width: 60%; height: 60px">
+		<footer class="footer">
+			<div style="background-color: #517a8e; border-color: #517a8e;">
+				Contact us at: <a href="hello@centroxy.com">hello@centroxy.com</a>
+				<button class="btn btn-secondary">Contact</button>
+			</div>
+		</footer>
+	</div>
+	<!-- Footer  end-->
+
+
+
+	<script th:inline="javascript" src="/js/schedule.js">
+		
+	</script>
+</body>
+
+</html>

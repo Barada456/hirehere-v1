@@ -1,0 +1,54 @@
+body {
+	position: fixed;
+}
+
+nav a {
+	background-color: #517a8e;
+	padding-right: 1rem;
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+a:active {
+	color: yellow;
+}
+
+.thead {
+	background-color: #517a8e;
+	color: #fff;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #517a8e;
+	color: white;
+	text-align: center;
+}
+
+.footer a {
+	color: #fff;
+}
+
+.table td, .table th {
+	width: 10%;
+	padding: 0.75rem;
+	vertical-align: top;
+	border-top: 1px solid #dee2e6;
+	height: 0%;
+}
+
+.final {
+	border-style: groove;
+	border-color: black;
+	padding: 8px;
+	margin-top: 5px;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+}

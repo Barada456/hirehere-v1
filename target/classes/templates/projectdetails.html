@@ -1,0 +1,168 @@
+<html xmlns:th="https://thymeleaf.org">
+
+<head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/css/projectdetails.css">
+<link rel = "icon" href = "https://centroxy.com/wp-content/uploads/2018/01/shortcut-icon-100x100.png" type = "image/x-icon">
+</head>
+
+
+
+
+<body>
+
+
+
+	<h1 class="text-light text-center" style="background-color: #517a8e;">HIRE
+		HERE</h1>
+	<nav class="navbar navbar-expand-lg navbar navbar-dark "
+		style="background-color: #517a8e; font-size: 20px;">
+		<a href="/project/addNewProject" style="color: white;">New Project</a>
+		<a href="/employee/allemployees/CEO" style="color: white;">Employees</a>
+		<a style="color: white;">Projects</a> <a href="/ceo/showDemands"
+			style="color: white;"> Demands </a>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav ml-auto">
+			</ul>
+			<a style="color: white;">Logout</a>
+		</div>
+	</nav>
+
+
+
+
+	<!-- Body Content -->
+
+
+
+	<div class="container" align="center">
+		<div class="card mt-2" style="width: 68rem; height: 420px;">
+
+
+
+			<br />
+			<form th:object="${details}" method="post"
+				enctype="multipart/form-data">
+				<div class="card-body">
+					<h6
+						style="position: absolute; top: 0; right: 5; width: 100px; text-align: right; color: blue">CEO</h6>
+					<h3 class="card-subtitle mb-1" align="center"
+						style="text-decoration: underline;">Project Details</h3>
+
+					<br />
+					<div class="row">
+						<table style="border: none" align="center">
+
+
+
+							<tr>
+								<td><b>Name</b></td>
+								<td><input type="text" th:field="*{name}"
+									class="form-control" placeholder="Enter Project Name" readonly>
+								</td>
+							</tr>
+
+
+
+
+							<tr>
+								<td><b>Location</b></td>
+								<td><input type="text" th:field="*{location}"
+									class="form-control" placeholder="Enter Location" readonly>
+								</td>
+							</tr>
+
+
+
+
+
+							<tr>
+								<td><b>Start Date</b></td>
+								<td><input type="date" th:field="*{startDate}"
+									class="form-control" placeholder="Enter Start Date" readonly></td>
+							</tr>
+
+
+
+							<tr>
+								<td><b>Due End Date</b></td>
+								<td><input type="date" th:field="*{dueEndDate}"
+									class="form-control" placeholder="Enter Due End Date" readonly></td>
+
+
+
+							</tr>
+
+							<tr>
+								<td><b><label>Project Pic</label></b></td>
+								<td><img th:src="@{${details.projectPicImagePath}}"
+									height="100" width="100"></td>
+							</tr>
+
+						</table>
+					</div>
+
+
+
+
+
+
+
+				</div>
+			</form>
+
+
+
+		</div>
+	</div>
+
+
+
+	<!-- Body Content -->
+
+
+
+	<!-- Footer -->
+
+
+
+	<div class="foot ml-5"
+		style="margin-bottom: 50px; position: center; bottom: 20; width: 60%; height: 60px">
+
+
+
+		<footer class="footer">
+
+
+
+			<div style="background-color: #517a8e; border-color: #517a8e;">
+				Contact us at: <a href="hello@centroxy.com">hello@centroxy.com</a>
+				<button class="btn btn-secondary">Contact</button>
+			</div>
+
+
+
+
+		</footer>
+
+
+
+
+	</div>
+
+
+
+
+
+	<!-- Footer -->
+	<script src="/js/projectdetails.js">
+	
+	</script>
+	
+</body>
+
+
+
+</html>

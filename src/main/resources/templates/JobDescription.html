@@ -1,0 +1,149 @@
+<html xmlns:th="https://thymeleaf.org">
+
+
+<head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+<link rel="stylesheet" href="/css/JobDescription.css">
+<link rel = "icon" href = "https://centroxy.com/wp-content/uploads/2018/01/shortcut-icon-100x100.png" type = "image/x-icon">
+</head>
+
+
+<body>
+
+	<h1 class="text-light text-center" style="background-color: #517a8e;">HIRE
+		HERE</h1>
+	<nav class="navbar navbar-expand-lg navbar navbar-dark "
+		style="background-color: #517a8e; font-size: 20px;">
+		<a href="/employee/allemployees/PM" style="color: white;">Employees</a> <a style="color: white;">Projects</a> <a href="/pm/demandResource"
+			style="color: white;" class="nav-link active"> Demand Resource </a>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav ml-auto">
+			</ul>
+			<a style="color: white;">Logout</a>
+		</div>
+	</nav>
+
+
+	<!-- Body Content -->
+
+	<div class="container" align="center" >
+		<div class="card mt-2" style="width: 68rem; height: 460px;">
+
+
+			<form th:action="@{/pm/processResourceDemand}"
+				th:object="${JobDescription}" method="post" >
+				<div class="card-body">
+					 <h6 style="position: absolute; top: 0; right: 5; width: 100px; text-align:right; color:blue">PM</h6>
+					<h3 class="card-subtitle mb-1" align="center" style="text-decoration: underline;">Job Description</h3>
+					
+
+					<div class="row" >
+						<table style="border:none">
+
+							<tr >
+								<td><b>Qualifications</b></td>
+								<td ><select id="qualifications" class="form-control"
+									th:field="*{qualification}" style="width:200px !important" required>
+										<option selected value="B.Tech">B.Tech</option>
+										<option value="MCA">MCA</option>
+										<option value="MBA">MBA</option>
+								</select></td>
+							</tr>
+
+
+							<tr>
+								<td><b>Domain</b></td>
+								<td><select id="domain" class="form-control"
+									th:field="*{domain}" style="width:200px !important" required>
+										<option selected value="Java">Java</option>
+										<option value="Pyhton">Python</option>
+										<option value="PHP">PHP</option>
+								</select></td>
+							</tr>
+
+							<tr>
+								<td><b>Skill Sets</b></td>
+								<td><select id="skillset" class="form-control"
+									th:field="*{skillSet}" multiple style="width:200px !important" required>
+										<option selected value="Core Java">Core Java</option>
+										<option value="Spring">Spring</option>
+										<option value="Spring boot">Spring boot</option>
+								</select></td>
+							</tr>
+
+							<tr>
+								<td><b>Experience In Years</b></td>
+								<td><select id="experienceinyears" class="form-control"
+									th:field="*{experienceInYears}" style="width:200px !important" required>
+										<option selected value="0-2">0-2</option>
+										<option value="2-4">2-4</option>
+										<option value="5-6">5-6</option>
+								</select></td>
+							</tr>
+
+							<tr>
+								<td><b>Position For</b></td>
+								<td><input type="text" th:field="*{positionFor}"
+									class="form-control" style="width:200px" required></td>
+
+							</tr>
+							
+							<tr>
+								<td><b><label>Responsibilities</label></b></td>
+								<td style="width: 40rem"><textarea class="form-control"
+										rows="3" cols="10" th:field="*{responsibilities}" required></textarea></td>
+							</tr>
+							
+							
+							
+						</table>
+					</div>
+
+
+
+					
+					<p align="center" style="margin-top:0.5rem" >
+						<button type="submit" class="btn btn-success">Send</button>
+						<button type="reset" class="btn btn-danger">Reset</button>
+					</p>
+
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<!-- Body Content -->
+<!-- Footer -->
+
+	<div class="foot ml-5"
+		style="margin-bottom: 50px; position: center; bottom: 20; width: 60%; height: 60px">
+		<footer class="footer">
+			<div style="background-color: #517a8e; border-color: #517a8e;">
+				<form id="footer-form">
+					<label for="email">Let us reach you at:</label> <input type="email"
+						id="email">
+					<button class="btn btn-secondary" id="footer-contact" type="submit">Contact</button>
+				</form>
+			</div>
+		</footer>
+	</div>
+	<!-- Footer -->
+
+	</div>
+
+
+
+	<!-- Footer -->
+	<script src="/js/JobDescription.js">
+	
+	</script>
+	
+</body>
+
+</html>
+
+
